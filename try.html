@@ -36,18 +36,19 @@
 <body>
   <div class="container">
     <div>
-      <p>今日やること</p>
+      <p>今日やること</p><button id="allremove">全削除</button>
       <input type="text" id="text">
       <button id="add">追加</button>
       <ul id="list"></ul>
     </div>
     <div>
-      <p>明日やること</p>
+      <p>明日やること</p><button id="allremove2">全削除</button>
       <input type="text" id="tomorrow">
       <button id="add2">追加</button>
       <ul id="list2"></ul>
     </div>
   </div>
+  <button id="tired">疲れてきた</button>
   <script>
     'use strict';
     {
@@ -56,8 +57,7 @@
 
       add.addEventListener('click', () => {
         const li = document.createElement('li');
-        let toDo = text.value
-        li.textContent = toDo;
+        li.textContent = text.value
         if (text.value.includes('重要')) {
           li.classList.add('imp');
         }
@@ -93,7 +93,38 @@
         });
       });
 
+      //リストの全削除ボタン
+      const allremove = document.getElementById('allremove')
+      allremove.addEventListener('click', () => {
+        while (list.firstChild) {
+          list.removeChild(list.firstChild);
+        }
+      });
 
+      //リストの全削除ボタン
+      const allremove2 = document.getElementById('allremove2')
+      allremove2.addEventListener('click', () => {
+        while (list2.firstChild) {
+          list2.removeChild(list2.firstChild);
+        }
+      });
+
+      const words = [
+        'がんばれ！',
+        '今日は寝たら？',
+        '諦めたら今までの積み重ねが無駄になってゃうよ？',
+        'あと少しやったらおわり！',
+      ];
+
+      const tired = document.getElementById('tired');
+      tired.addEventListener('click',()=>{
+      let random = words[Math.floor(Math.random() * words.length)]
+        console.log(random)
+      });
+
+
+
+      
 
 
     }
